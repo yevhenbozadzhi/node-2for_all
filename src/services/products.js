@@ -12,8 +12,16 @@ export const createProduct = (payload) => {
   return ProductModel.create(payload);
 };
 
+
 export const deleteProduct = async (productId) => {
   const deleteProduct = await ProductModel.findByIdAndDelete(productId);
 
   return deleteProduct;
 };
+
+export const patchProduct = (productId, payload) => {
+  return ProductModel.findByIdAndUpdate(productId, payload, {
+    new: true,
+  });
+};
+
