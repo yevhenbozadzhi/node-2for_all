@@ -3,6 +3,7 @@ import {
   getProducts,
   getProductById,
   createProduct,
+  patchProduct,
 } from '../services/products.js';
 
 export const getProductsControllers = async (req, res) => {
@@ -33,6 +34,19 @@ export const createProductController = async (req, res) => {
   res.status(201).json({
     status: 201,
     message: 'Successfully created a product!',
+    data: product,
+  });
+};
+
+export const patchProductController = async (req, res) => {
+  const { productId } = req.params;
+  const product = await patchProduct(productId, req.body);
+  if (!product) {
+    throw createHttpError(404, "Product not found");
+  }
+  res.status(200).json({
+    status: 200,
+    message: "Successfully patched a product!",
     data: product,
   });
 };
