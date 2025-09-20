@@ -3,6 +3,7 @@ import {
   getProducts,
   getProductById,
   createProduct,
+  deleteProduct,
 } from '../services/products.js';
 
 export const getProductsControllers = async (req, res) => {
@@ -35,4 +36,13 @@ export const createProductController = async (req, res) => {
     message: 'Successfully created a product!',
     data: product,
   });
+};
+
+export const deleteProductController = async (req, res) => {
+  const { productId } = req.params;
+  const result = await deleteProduct(productId);
+  if (!result) {
+    throw createHttpError(404, 'Product not found');
+  }
+  res.status(204).send();
 };

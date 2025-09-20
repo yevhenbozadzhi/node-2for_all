@@ -11,3 +11,9 @@ export const getProductById = (productId) => {
 export const createProduct = (payload) => {
   return ProductModel.create(payload);
 };
+
+export const deleteProduct = async (productId) => {
+  const deleteProduct = await ProductModel.findByIdAndDelete(productId);
+
+  return deleteProduct;
+};
