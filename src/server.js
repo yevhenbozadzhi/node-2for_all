@@ -12,8 +12,8 @@ export const setupServer = () => {
 
   app.use(express.json());
   app.use(cors());
+  app.use("/products", productsRouter);
 
-  app.use(productsRouter);
 
   app.use(notFoundHandler);
 
@@ -23,3 +23,4 @@ export const setupServer = () => {
     console.log(`Server is running on port ${PORT}`);
   });
 };
+ 

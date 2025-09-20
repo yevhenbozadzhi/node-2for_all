@@ -11,3 +11,10 @@ export const getProductById = (productId) => {
 export const createProduct = (payload) => {
   return ProductModel.create(payload);
 };
+
+
+export const patchProduct = (productId, payload) => {
+  return ProductModel.findByIdAndUpdate(productId, payload, {
+    new: true,
+  });
+};
