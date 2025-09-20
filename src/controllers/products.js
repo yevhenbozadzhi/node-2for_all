@@ -3,6 +3,7 @@ import {
   getProducts,
   getProductById,
   createProduct,
+  deleteProduct,
   patchProduct,
 } from '../services/products.js';
 
@@ -37,7 +38,14 @@ export const createProductController = async (req, res) => {
     data: product,
   });
 };
-
+export const deleteProductController = async (req, res) => {
+  const { productId } = req.params;
+  const result = await deleteProduct(productId);
+  if (!result) {
+    throw createHttpError(404, 'Product not found');
+  }
+  res.status(204).send();
+};
 export const patchProductController = async (req, res) => {
   const { productId } = req.params;
   const product = await patchProduct(productId, req.body);
