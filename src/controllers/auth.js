@@ -11,3 +11,5 @@ export const UserRegisterController = async (req, res) => {
       data: user,
     });
 };
+
+export const UserLoginController = async (req, res)
